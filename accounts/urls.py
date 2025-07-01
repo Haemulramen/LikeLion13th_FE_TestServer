@@ -3,7 +3,7 @@ from accounts.views import *
 
 urlpatterns = [
     path('signup/', RegisterView.as_view(), name='signup'),
-    # path('login/', ),
+    path('login/', AuthView.as_view(), name='login'),
     # path('mypage/'),
     # path('refresh/')
 ]
