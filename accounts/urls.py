@@ -5,5 +5,5 @@ urlpatterns = [
     path('signup/', RegisterView.as_view(), name='signup'),
     path('login/', AuthView.as_view(), name='login'),
     path('mypage/', MyPageView.as_view(), name='mypage'),
-    # path('refresh/')
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
