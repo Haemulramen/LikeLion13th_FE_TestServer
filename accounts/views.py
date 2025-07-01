@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from accounts.serializers import *
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class RegisterView(APIView):
@@ -34,4 +35,15 @@ class AuthView(APIView):
             )
 
             return res
-        return Response(serializer.errors, status=400)
+        
+class MyPageView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        data = {
+            "id": user.username,
+            "name": user.first_name,
+            "age": user.age
+        }
+        return Response(data, status=status.HTTP_200_OK)
